@@ -3,8 +3,14 @@ from msrest.authentication import CognitiveServicesCredentials
 from azure.cognitiveservices.vision.computervision.models import OperationStatusCodes
 import time
 
-endpoint = "ENTER ENDPOINT HERE"
-key = "ENTER KEY HERE"
+
+with open("secret.txt", "r") as file:
+    lines = file.readlines()
+
+key = lines[0].strip()
+endpoint = lines[2].strip()
+
+
 
 credentials = CognitiveServicesCredentials(key)
 
@@ -47,3 +53,5 @@ def read_image(uri):
         return res_text
     else:
         return "error"
+
+
